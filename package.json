@@ -1,0 +1,18 @@
+{
+  "name": "DatastoreNotesForGoogleAppEngine",
+  "version": "0.9.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "lr-http-server": "^0.1.0"
+  },
+  "scripts": {
+    "watch": "lr-http-server -p 8090 .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Mortensen",
+  "license": "MIT",
+  "devDependencies": {
+    "lr-http-server": "^0.1.0"
+  }
+}
