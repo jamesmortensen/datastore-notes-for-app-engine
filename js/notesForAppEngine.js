@@ -1,4 +1,4 @@
-﻿// notesForAppEngine.js
+// notesForAppEngine.js
 
 /**
 
@@ -55,16 +55,16 @@ var getKeyFromRow = function(targetElement) {
 var bindEventsToNotesBox = function(explorerEntitiesElement) {
     var keyFilterer = new KeyFilterer();
 
-    explorerEntitiesElement.on('click keyup', '.notes-for-appengine-note input', function(event) { 
-        if(event.type === 'keyup') {
+    explorerEntitiesElement.on('click keyup', '.notes-for-appengine-note input', function(event) {
+        if (event.type === 'keyup') {
             var isValidKey = keyFilterer.isValidKey(event.keyCode);
             var key = getKeyFromRow(event.currentTarget);
             var value = $(event.currentTarget).val();
-            if(isValidKey) {        
+            if (isValidKey) {
                 saveNotes(key, value);
             }
         }
-    });   
+    });
 };
 
 
@@ -104,7 +104,7 @@ var getNotesFromStorage = function(keysToFetch) {
 var getKeysFromPage = function() {
     var inputKeyElements = $('.cbc input[name="key"]');
     var keys = [];
-    for(var i = 0; i < inputKeyElements.length; i++) {
+    for (var i = 0; i < inputKeyElements.length; i++) {
         keys.push(inputKeyElements.eq(i).val());
     }
     return keys;
@@ -112,7 +112,7 @@ var getKeysFromPage = function() {
 
 
 var insertNotesInPage = function(notes) {
-    if(notes === undefined) return;
+    if (notes === undefined) return;
     var keys = Object.keys(notes);
     keys.forEach(function(key) {
         var value = notes[key];
@@ -127,14 +127,14 @@ var insertNotesColumns = function(explorerEntitiesElement) {
     var editNoteElement = '<span class="fa fa-edit notes-for-appengine-edit-note"></span>';
     var noteHeaderElement = '<th class="notes-for-appengine-note">Note</th>';
     var noteElement = '<td class="notes-for-appengine-note"><input type="text"></input></td>';
-    
+
     tableHeaderElement.before(
-        '<th class="notes-for-appengine-edit-note-cell">' + editNoteElement + '</th>' + noteHeaderElement
+    '<th class="notes-for-appengine-edit-note-cell">' + editNoteElement + '</th>' + noteHeaderElement
     );
 
     var bodyHeaderElement = explorerEntitiesElement.find('tbody tr .cbc');
     bodyHeaderElement.before(
-        '<td class="notes-for-appengine-edit-note-cell">' + editNoteElement + '</td>' + noteElement
+    '<td class="notes-for-appengine-edit-note-cell">' + editNoteElement + '</td>' + noteElement
     );
 };
 
