@@ -92,6 +92,12 @@ var saveNotes = function(key, noteText) {
 };
 
 
+/**
+ * Get notes from storage that match an array of keys.
+ *
+ * @param {Array} keysToFetch An array of strings representing keys.
+ * @return {Promise} The object containing the done, fail, progress methods.
+ */
 var getNotesFromStorage = function(keysToFetch) {
     var deferred = $.Deferred();
     chrome.storage.local.get(keysToFetch, function(notes) {
@@ -101,6 +107,13 @@ var getNotesFromStorage = function(keysToFetch) {
 };
 
 
+/**
+ * Scrape the DOM for all of the Datastore keys that are visible on the page. This
+ * helps us limit the amount of data we fetch from storage to only what we actually
+ * need.
+ *
+ * @return {Array} The array of string keys found on the page.
+ */
 var getKeysFromPage = function() {
     var inputKeyElements = $('.cbc input[name="key"]');
     var keys = [];
@@ -111,6 +124,12 @@ var getKeysFromPage = function() {
 };
 
 
+/**
+ * Insert the note text in the note fields in the DOM by mapping the notes to the 
+ * corresponding row in the DOM table.
+ *
+ * @param {Object} notes The object containing key/value pairs.
+ */
 var insertNotesInPage = function(notes) {
     if (notes === undefined) return;
     var keys = Object.keys(notes);
@@ -121,6 +140,11 @@ var insertNotesInPage = function(notes) {
 };
 
 
+/**
+ * Insert the column fields themselves into the DOM.
+ *
+ * @param {jQueryElement} explorerEntitiesElement jQuery DOM object representing the table.
+ */
 var insertNotesColumns = function(explorerEntitiesElement) {
     var tableHeaderElement = explorerEntitiesElement.find('thead tr .cbc');
 
@@ -139,9 +163,16 @@ var insertNotesColumns = function(explorerEntitiesElement) {
 };
 
 
+/**
+ * We use Font Awesome for all icons, and load the CSS prior to the pageload event to speed up rendering.
+ */
 addFontAwesome();
 
 
+/**
+ * Entry point to the content script. This loads all data on the page and binds all click and keydown
+ * events in the DOM, as well as retrieving the notes from storage and inserting them in the page.
+ */
 window.addEventListener('load', function() {
     var explorerEntitiesElement = $('#ae-datastore-explorer-entities');
     insertNotesColumns(explorerEntitiesElement);
