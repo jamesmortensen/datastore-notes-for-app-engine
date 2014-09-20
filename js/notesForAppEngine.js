@@ -173,7 +173,7 @@ addFontAwesome();
  * Entry point to the content script. This loads all data on the page and binds all click and keydown
  * events in the DOM, as well as retrieving the notes from storage and inserting them in the page.
  */
-window.addEventListener('load', function() {
+//window.addEventListener('load', function() {
     var explorerEntitiesElement = $('#ae-datastore-explorer-entities');
     insertNotesColumns(explorerEntitiesElement);
     bindEventsToNotesBox(explorerEntitiesElement);
@@ -183,5 +183,5 @@ window.addEventListener('load', function() {
     notesResults.done(function(notes) {
         insertNotesInPage(notes);
     });
-});
+//});
 

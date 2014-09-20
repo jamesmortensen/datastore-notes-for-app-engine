@@ -12,7 +12,7 @@
    } ],
    "description": "Chrome Extension to allow annotations to Google App Engine™ datastore records.",
    "name": "Datastore Notes for Google App Engine™",
-   "version": "0.9.0",
+   "version": "0.9.1",
    "manifest_version": 2,
    "permissions": ["tabs", "storage"],
    "web_accessible_resources": ["js/lib/jquery-2.1.0.min.map"],
